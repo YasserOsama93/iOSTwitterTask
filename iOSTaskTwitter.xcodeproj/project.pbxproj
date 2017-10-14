@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B89A4181F92253B0088A26B /* FollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89A4171F92253B0088A26B /* FollowerTableViewCell.swift */; };
+		3B89A41A1F9242470088A26B /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89A4191F9242470088A26B /* UserProfileViewController.swift */; };
 		3BB958661F9129C9005D7B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB958651F9129C9005D7B25 /* AppDelegate.swift */; };
 		3BB958681F9129C9005D7B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB958671F9129C9005D7B25 /* ViewController.swift */; };
 		3BB9586B1F9129CA005D7B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB958691F9129CA005D7B25 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		3B89A4171F92253B0088A26B /* FollowerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerTableViewCell.swift; sourceTree = "<group>"; };
+		3B89A4191F9242470088A26B /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		3BB958621F9129C9005D7B25 /* iOSTaskTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTaskTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB958651F9129C9005D7B25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BB958671F9129C9005D7B25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				3BB958651F9129C9005D7B25 /* AppDelegate.swift */,
 				3BB958671F9129C9005D7B25 /* ViewController.swift */,
 				3BB9587D1F91384F005D7B25 /* FollowersViewController.swift */,
+				3B89A4191F9242470088A26B /* UserProfileViewController.swift */,
 				3B89A4171F92253B0088A26B /* FollowerTableViewCell.swift */,
 				3BB958691F9129CA005D7B25 /* Main.storyboard */,
 				3BB9586C1F9129CA005D7B25 /* Assets.xcassets */,
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BB958681F9129C9005D7B25 /* ViewController.swift in Sources */,
+				3B89A41A1F9242470088A26B /* UserProfileViewController.swift in Sources */,
 				3BB9587E1F91384F005D7B25 /* FollowersViewController.swift in Sources */,
 				3BB958661F9129C9005D7B25 /* AppDelegate.swift in Sources */,
 				3B89A4181F92253B0088A26B /* FollowerTableViewCell.swift in Sources */,

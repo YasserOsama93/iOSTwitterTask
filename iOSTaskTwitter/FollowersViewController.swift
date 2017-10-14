@@ -14,9 +14,10 @@ class FollowersViewController: UITableViewController {
     let url = "https://api.twitter.com/1.1/followers/list.json"
     var params = Dictionary<String,String>()
     var clientError: NSError?
-    var followersIDs = [Int]()
+    
     var fetchedFollowers = [Dictionary<String,Any>]()
     var client: TWTRAPIClient?
+    var selectedUser = Dictionary<String, Any>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +93,20 @@ class FollowersViewController: UITableViewController {
             return 150
         } else {
             return 85
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! FollowerTableViewCell
+        cell.user = fetchedFollowers[indexPath.row]
+        selectedUser = fetchedFollowers[indexPath.row]
+        performSegue(withIdentifier: "loadUserProfile", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "loadUserProfile" {
+            let userVC = segue.destination as! UserProfileViewController
+            userVC.user = selectedUser
         }
     }
 }

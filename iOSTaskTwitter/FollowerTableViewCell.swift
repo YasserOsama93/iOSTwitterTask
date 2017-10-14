@@ -15,6 +15,8 @@ class FollowerTableViewCell: UITableViewCell {
     @IBOutlet weak var followerScreenName: UILabel!
     @IBOutlet weak var followerBio: UILabel!
     
+    var user = Dictionary<String,Any>()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
