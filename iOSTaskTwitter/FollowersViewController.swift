@@ -24,46 +24,8 @@ class FollowersViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 90
         tableView.rowHeight = UITableViewAutomaticDimension
-        
-        guard let userId = Twitter.sharedInstance().sessionStore.session()?.userID else {
-            return
-        }
-        
-        self.client = TWTRAPIClient(userID: userId)
-        client?.loadUser(withID: userId) { (user, error) in
-            if user != nil {
-                print("User: \(String(describing: user))")
-            } else {
-                print("Error: \(String(describing: error))")
-            }
-        }
-        params.updateValue(userId, forKey: "id")
-        params.updateValue("false", forKey: "include_user_entities")
-        
-        let request = client?.urlRequest(withMethod: "GET", url: url, parameters: params, error: &clientError)
-        
-        
-        client?.sendTwitterRequest(request!) { (response, data, connectionError) in
-            if connectionError != nil {
-                print("Error: \(connectionError?.localizedDescription ?? "hi")")
-            } else {
-                do {
-                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,Any> else {
-                        return
-                    }
-                    print("json: \(json)")
-                    guard let users = json["users"] as? [Dictionary<String,Any>] else {
-                        return
-                    }
-                    print(users)
-                    self.fetchedFollowers = users
-                    self.tableView.reloadData()
-                } catch let jsonError as NSError {
-                    print("Json error: \(jsonError.localizedDescription)")
-                }
-            }
-            
-        }
+        self.refreshControl?.addTarget(self, action: #selector(fetchFollowers), for: UIControlEvents.valueChanged)
+        fetchFollowers()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -108,5 +70,42 @@ class FollowersViewController: UITableViewController {
             let userVC = segue.destination as! UserProfileViewController
             userVC.user = selectedUser
         }
+    }
+    
+    @objc func fetchFollowers() {
+        
+        guard let userId = Twitter.sharedInstance().sessionStore.session()?.userID else {
+            return
+        }
+        
+        self.client = TWTRAPIClient(userID: userId)
+        
+        params.updateValue(userId, forKey: "id")
+        params.updateValue("false", forKey: "include_user_entities")
+        
+        let request = client?.urlRequest(withMethod: "GET", url: url, parameters: params, error: &clientError)
+        
+        
+        client?.sendTwitterRequest(request!) { (response, data, connectionError) in
+            if connectionError != nil {
+                print("Error: \(connectionError?.localizedDescription ?? "hi")")
+            } else {
+                do {
+                    guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? Dictionary<String,Any> else {
+                        return
+                    }
+                    guard let users = json["users"] as? [Dictionary<String,Any>] else {
+                        return
+                    }
+                    self.fetchedFollowers = users
+                    self.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                } catch let jsonError as NSError {
+                    print("Json error: \(jsonError.localizedDescription)")
+                }
+            }
+            
+        }
+        
     }
 }

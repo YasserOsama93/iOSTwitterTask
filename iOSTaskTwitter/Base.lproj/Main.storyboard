@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="237.59999999999999" y="29.23538230884558"/>
         </scene>
-        <!--Followers View Controller-->
+        <!--Followers-->
         <scene sceneID="7K9-bJ-MJf">
             <objects>
-                <tableViewController id="G78-t1-Cg7" customClass="FollowersViewController" customModule="iOSTaskTwitter" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Followers" id="G78-t1-Cg7" customClass="FollowersViewController" customModule="iOSTaskTwitter" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jqd-Nj-vG7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,13 +99,16 @@
                             <outlet property="delegate" destination="G78-t1-Cg7" id="Bae-1M-1Q3"/>
                         </connections>
                     </tableView>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1ff-Sa-gcV">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <segue destination="VtL-SS-4Be" kind="show" identifier="loadUserProfile" id="4yM-8D-OdB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WXB-cP-eKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1116" y="19"/>
+            <point key="canvasLocation" x="1134" y="28"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="VaZ-b1-Dmi">
@@ -131,7 +134,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Jt3-U8-gqc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Jt3-U8-gqc">
                                 <rect key="frame" x="0.0" y="178" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jt3-U8-gqc" id="8Nv-mE-eNw">
