@@ -7,5 +7,6 @@ target 'iOSTaskTwitter' do
 
   # Pods for iOSTaskTwitter
 pod 'TwitterKit'
+pod 'Kingfisher', '~> 4.0'
 
 end

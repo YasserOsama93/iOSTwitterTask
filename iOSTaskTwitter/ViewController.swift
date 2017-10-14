@@ -12,6 +12,11 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let store = Twitter.sharedInstance().sessionStore
         let sessions = store.existingUserSessions()
         if sessions.count > 0 {

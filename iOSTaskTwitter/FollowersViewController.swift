@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Kingfisher
 
-class secondViewController: UITableViewController {
+class FollowersViewController: UITableViewController {
 
     let url = "https://api.twitter.com/1.1/followers/list.json"
     var params = Dictionary<String,String>()
@@ -19,6 +20,9 @@ class secondViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = 90
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         guard let userId = Twitter.sharedInstance().sessionStore.session()?.userID else {
             return
@@ -66,11 +70,28 @@ class secondViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "followerCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "followerCell", for: indexPath) as! FollowerTableViewCell
         if fetchedFollowers.count > 0 {
-            cell.textLabel?.text = fetchedFollowers[indexPath.row]["name"] as? String
-            cell.detailTextLabel?.text = fetchedFollowers[indexPath.row]["screen_name"] as? String
+            cell.followerName.text = fetchedFollowers[indexPath.row]["name"] as? String
+            cell.followerScreenName.text = "@\(fetchedFollowers[indexPath.row]["screen_name"]!)"
+            let bio = fetchedFollowers[indexPath.row]["description"] as? String
+            if !((bio?.isEmpty)!) {
+                cell.followerBio.text = bio
+            } else {
+                cell.followerBio.isHidden = true
+            }
+            let imageUrl = URL(string: (fetchedFollowers[indexPath.row]["profile_image_url_https"] as? String)!)
+            cell.followerImageView.kf.setImage(with: imageUrl)
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let bio = fetchedFollowers[indexPath.row]["description"] as? String
+        if !(bio?.isEmpty)! {
+            return 150
+        } else {
+            return 85
+        }
     }
 }

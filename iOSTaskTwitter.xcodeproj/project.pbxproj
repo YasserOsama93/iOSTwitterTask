@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B89A4181F92253B0088A26B /* FollowerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89A4171F92253B0088A26B /* FollowerTableViewCell.swift */; };
 		3BB958661F9129C9005D7B25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB958651F9129C9005D7B25 /* AppDelegate.swift */; };
 		3BB958681F9129C9005D7B25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB958671F9129C9005D7B25 /* ViewController.swift */; };
 		3BB9586B1F9129CA005D7B25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB958691F9129CA005D7B25 /* Main.storyboard */; };
 		3BB9586D1F9129CA005D7B25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB9586C1F9129CA005D7B25 /* Assets.xcassets */; };
 		3BB958701F9129CA005D7B25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB9586E1F9129CA005D7B25 /* LaunchScreen.storyboard */; };
 		3BB958781F912BA2005D7B25 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB958771F912BA2005D7B25 /* SafariServices.framework */; };
-		3BB9587E1F91384F005D7B25 /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB9587D1F91384F005D7B25 /* secondViewController.swift */; };
+		3BB9587E1F91384F005D7B25 /* FollowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB9587D1F91384F005D7B25 /* FollowersViewController.swift */; };
 		F1D5209F9140E0AF67D4FA3C /* Pods_iOSTaskTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7355D7853C420E642B14BA69 /* Pods_iOSTaskTwitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3B89A4171F92253B0088A26B /* FollowerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerTableViewCell.swift; sourceTree = "<group>"; };
 		3BB958621F9129C9005D7B25 /* iOSTaskTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTaskTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB958651F9129C9005D7B25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BB958671F9129C9005D7B25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,7 +29,7 @@
 		3BB958711F9129CA005D7B25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BB958771F912BA2005D7B25 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		3BB9587A1F91333A005D7B25 /* iOSTaskTwitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSTaskTwitter-Bridging-Header.h"; sourceTree = "<group>"; };
-		3BB9587D1F91384F005D7B25 /* secondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
+		3BB9587D1F91384F005D7B25 /* FollowersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersViewController.swift; sourceTree = "<group>"; };
 		7355D7853C420E642B14BA69 /* Pods_iOSTaskTwitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSTaskTwitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B227794BB130D087C0C14AF /* Pods-iOSTaskTwitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTaskTwitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOSTaskTwitter/Pods-iOSTaskTwitter.debug.xcconfig"; sourceTree = "<group>"; };
 		9F2A810FB4441C34D4998610 /* Pods-iOSTaskTwitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSTaskTwitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSTaskTwitter/Pods-iOSTaskTwitter.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,7 +80,8 @@
 			children = (
 				3BB958651F9129C9005D7B25 /* AppDelegate.swift */,
 				3BB958671F9129C9005D7B25 /* ViewController.swift */,
-				3BB9587D1F91384F005D7B25 /* secondViewController.swift */,
+				3BB9587D1F91384F005D7B25 /* FollowersViewController.swift */,
+				3B89A4171F92253B0088A26B /* FollowerTableViewCell.swift */,
 				3BB958691F9129CA005D7B25 /* Main.storyboard */,
 				3BB9586C1F9129CA005D7B25 /* Assets.xcassets */,
 				3BB9586E1F9129CA005D7B25 /* LaunchScreen.storyboard */,
@@ -212,9 +215,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iOSTaskTwitter/Pods-iOSTaskTwitter-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -229,8 +235,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BB958681F9129C9005D7B25 /* ViewController.swift in Sources */,
-				3BB9587E1F91384F005D7B25 /* secondViewController.swift in Sources */,
+				3BB9587E1F91384F005D7B25 /* FollowersViewController.swift in Sources */,
 				3BB958661F9129C9005D7B25 /* AppDelegate.swift in Sources */,
+				3B89A4181F92253B0088A26B /* FollowerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
