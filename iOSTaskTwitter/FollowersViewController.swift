@@ -27,6 +27,13 @@ class FollowersViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(fetchFollowers), for: UIControlEvents.valueChanged)
         fetchFollowers()
     }
+    @IBAction func LogOut(_ sender: UIBarButtonItem) {
+        let store = Twitter.sharedInstance().sessionStore
+        if let userID = store.session()?.userID {
+            store.logOutUserID(userID)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedFollowers.count

@@ -25,7 +25,7 @@ class ViewController: UIViewController {
             let logInButton = TWTRLogInButton { (session, error) in
                 if session != nil {
                     print("Session: \(String(describing: session?.userName))")
-                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
+//                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
                     store.save(session!, completion: { (session2, error2 ) in
                         if session2 != nil {
                             print("Session: \(String(describing: session2?.userID))")
