@@ -17,15 +17,17 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         let store = Twitter.sharedInstance().sessionStore
         let sessions = store.existingUserSessions()
+        
+        //check if there's any stored sessions continue to followers screen, else login
         if sessions.count > 0 {
             self.performSegue(withIdentifier: "loginSuccess", sender: self)
         } else {
             let logInButton = TWTRLogInButton { (session, error) in
                 if session != nil {
                     print("Session: \(String(describing: session?.userName))")
-//                    self.performSegue(withIdentifier: "loginSuccess", sender: self)
                     store.save(session!, completion: { (session2, error2 ) in
                         if session2 != nil {
                             print("Session: \(String(describing: session2?.userID))")

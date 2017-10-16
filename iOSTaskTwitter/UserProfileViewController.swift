@@ -11,9 +11,11 @@ import Kingfisher
 
 class UserProfileViewController: TWTRTimelineViewController {
 
+    //MARK: Outlets
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     
+    //MARK: Properties
     let url = "https://api.twitter.com/1.1/users/show.json"
     var params = Dictionary<String,String>()
     var user = Dictionary<String,Any>()
@@ -22,6 +24,7 @@ class UserProfileViewController: TWTRTimelineViewController {
     
     var userPhoto = ""
     
+    //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,17 +43,23 @@ class UserProfileViewController: TWTRTimelineViewController {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(userPhotoTapped(_:)))
         profileImageView.addGestureRecognizer(tap)
-        let tap2 = UITapGestureRecognizer(target: self, action: #selector(userBGPhotoTapped(_:)))
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(userPhotoTapped(_:)))
         backgroundImageView.addGestureRecognizer(tap2)
     }
 
+    //MARK: Custom Methods
+    //Open picture in fullscreen when the user taps on it
     @objc func userPhotoTapped(_ sender: UITapGestureRecognizer) {
         let imageView = sender.view as! UIImageView
         var newImageView = UIImageView()
-        if imageView.image == #imageLiteral(resourceName: "default_profile") {
-            newImageView = UIImageView(image: imageView.image)
+        if imageView == profileImageView {
+            if imageView.image == #imageLiteral(resourceName: "default_profile") {
+                newImageView = UIImageView(image: imageView.image)
+            } else {
+                newImageView.kf.setImage(with: URL(string: userPhoto))
+            }
         } else {
-            newImageView.kf.setImage(with: URL(string: userPhoto))
+            newImageView = UIImageView(image: imageView.image)
         }
         newImageView.frame = UIScreen.main.bounds
         newImageView.backgroundColor = .black
@@ -63,25 +72,14 @@ class UserProfileViewController: TWTRTimelineViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    @objc func userBGPhotoTapped(_ sender: UITapGestureRecognizer) {
-        let imageView = sender.view as! UIImageView
-        let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
-        newImageView.addGestureRecognizer(tap)
-        self.view.addSubview(newImageView)
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    
+    //Dismissing the presented picture
     @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
         sender.view?.removeFromSuperview()
         self.navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = false
     }
+    
+    //Requesting User profile from the API
     func getUserProfile( screenName: String) {
         params.updateValue(screenName, forKey: "screen_name")
         let request = client.urlRequest(withMethod: "GET", url: url, parameters: params, error: &clientError)

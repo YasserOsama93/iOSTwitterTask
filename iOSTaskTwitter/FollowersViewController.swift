@@ -11,6 +11,7 @@ import Kingfisher
 
 class FollowersViewController: UITableViewController {
 
+    //MARK: Properties
     let url = "https://api.twitter.com/1.1/followers/list.json"
     var params = Dictionary<String,String>()
     var clientError: NSError?
@@ -19,6 +20,7 @@ class FollowersViewController: UITableViewController {
     var client: TWTRAPIClient?
     var selectedUser = Dictionary<String, Any>()
     
+    //MARK: View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +29,8 @@ class FollowersViewController: UITableViewController {
         self.refreshControl?.addTarget(self, action: #selector(fetchFollowers), for: UIControlEvents.valueChanged)
         fetchFollowers()
     }
+    
+    //MARK: Actions
     @IBAction func LogOut(_ sender: UIBarButtonItem) {
         let store = Twitter.sharedInstance().sessionStore
         if let userID = store.session()?.userID {
@@ -35,6 +39,7 @@ class FollowersViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    //MARK: Table View DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedFollowers.count
     }
@@ -65,6 +70,7 @@ class FollowersViewController: UITableViewController {
         }
     }
     
+    //MARK: Table View Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! FollowerTableViewCell
         cell.user = fetchedFollowers[indexPath.row]
@@ -72,6 +78,7 @@ class FollowersViewController: UITableViewController {
         performSegue(withIdentifier: "loadUserProfile", sender: self)
     }
     
+    //MARK: Segue functions
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loadUserProfile" {
             let userVC = segue.destination as! UserProfileViewController
@@ -79,6 +86,8 @@ class FollowersViewController: UITableViewController {
         }
     }
     
+    //MARK: Custom Functions
+    //Requesting the followers' list from API
     @objc func fetchFollowers() {
         
         guard let userId = Twitter.sharedInstance().sessionStore.session()?.userID else {
